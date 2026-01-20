@@ -1,7 +1,14 @@
+# Arquivo responsável por autenticação:
+# - criar conta
+# - login
+# - validação de usuário
+
 usuarios = {}
 
 while True:
-    print("\n1 - Criar conta")
+    print("""
+Bem vindo ao nosso banco! Oque o senhor deseja fazer?
+\n1 - Criar conta""")
     print("2 - Login")
     print("3 - Sair")
 
