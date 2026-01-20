@@ -1,3 +1,8 @@
+# Arquivo responsável por autenticação:
+# - criar conta
+# - login
+# - validação de usuário
+
 usuarios = {}
 
 while True:
@@ -16,12 +21,15 @@ Bem vindo ao nosso banco! Oque o senhor deseja fazer?
         else:
             senha = input("Senha: ")
             usuarios[user] = senha
+            # Pegue o valor que está guardado dentro de usuarios usando a chave user
+            # Guarde a senha dentro do dicionário usando o nome do usuário como chave
             print("Conta criada.")
 
     elif opcao == "2":
         user = input("Usuário: ")
         senha = input("Senha: ")
         if user in usuarios and usuarios[user] == senha:
+            #Se o usuário existe E a senha está correta
             print("Login realizado.")
         else:
             print("Usuário ou senha incorretos.")
