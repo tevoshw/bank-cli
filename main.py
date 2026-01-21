@@ -32,7 +32,6 @@ class MenuLogin:
 
             elif opcao == "2":
                 self.services.main_method_connect(opcao)
-                
 
             elif opcao == "3":
                 print("Saindo...")
@@ -40,37 +39,8 @@ class MenuLogin:
             else:
                 print("Opção inválida.")
 
-class MenuActions:
-    def __init__(self):
-        self.services = Services()
-
-
-    def menu_actions(self):
-        print("""
-        Bem vindo ! Oque o senhor deseja fazer?
-        \n1 - Deposito""")
-        print("2 - Saque")
-        print("3 - Ver saldo")
-        print("4 - Sair")
-
-        opcao = input("Escolha: ")
-
-        if opcao == "1":
-            self.services.deposit()
-                
-        elif opcao == "2":
-            self.services.withdrawaw
-                
-        elif opcao == "3":
-            self.services.view_balance
-
-        elif opcao == "4":
-            print("Saindo...")
-            
-
-        else:
-            print("Opção inválida.")
-
 menu_to_login = MenuLogin()
 menu_to_login.starting_database()
 menu_to_login.menu_login()
+
+

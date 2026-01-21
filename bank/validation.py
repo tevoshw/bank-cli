@@ -1,4 +1,3 @@
-from bank.data import *
 import sqlite3
 
 class Validation:
@@ -16,14 +15,13 @@ class Validation:
             self.cursor.execute(
                 "INSERT INTO bank (username, password) VALUES (?, ?)", (username, password))
             self.conn.commit()
+            print("Conta criada com sucesso")
         except sqlite3.IntegrityError:
             print("Esse usuário ja existe, não foi possível criar uma conta :( !")
 
 
 
     # LOGIN CONTA LÓGICA
-
-    
     def verify_login(self, username, password):
         self.cursor.execute(
             "SELECT id FROM bank WHERE username = ? AND password = ?",
@@ -32,8 +30,7 @@ class Validation:
 
         if self.cursor.fetchone() is None:
             print("Usuário ou senha incorretos")
-            
+        else:
+            print("Login realizado com sucesso")
 
-        print("Login realizado com sucesso")
-        
-        
+            
