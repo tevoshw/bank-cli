@@ -3,7 +3,8 @@
 # - login
 # - validação de usuário
 
-usuarios = {}
+from bank.services import Services
+services = Services()
 
 while True:
     print("""
@@ -15,10 +16,10 @@ Bem vindo ao nosso banco! Oque o senhor deseja fazer?
     opcao = input("Escolha: ")
 
     if opcao == "1":
-        pass
+        services.main_method_connect(opcao)
 
     elif opcao == "2":
-        pass
+        services.main_method_connect(opcao)
 
     elif opcao == "3":
         print("Saindo...")

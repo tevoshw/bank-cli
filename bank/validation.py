@@ -1,21 +1,19 @@
-from data import Data
+from bank.data import Data
 
 class Validation:
-    def __init__(self, username, password):
+    def __init__(self):
         
         # CRIANDO OS SELFS PARA RECEBER O USER E PASSWORD DOS INPUTS
-        self.validation_user = username
-        self.validation_password = password
+        self.validation_user = None
+        self.validation_password = None
 
         # INSTANCIANDO A CLASSE PARA UTILIZAR ELA NAS VERIFICAÇÕES
         self.data = Data()
 
-    def test(self):
-        print(f"valores recebidos: {self.validation_password, self.validation_user}")
-
     # CRIAR CONTA LÓGICA
-
-    def create_account_verify_user(self):
+    def create_account_verify_user(self, username, password):
+        self.validation_user = username
+        self.validation_password = password
 
         # COMPARA SE JA EXISTE UM USUÁRIO E SE EXISTE, NEGA ACESSO
         if self.validation_user in self.data.data_username:
@@ -25,9 +23,9 @@ class Validation:
             if len(self.validation_user) < 4:
                 print("Username pequeno demais, tente novamente!")
             else:
-                self.create_account_verify_password(self.validation_user)
+                self.create_account_verify_password()
 
-    def create_account_verify_password(self, user_validation):
+    def create_account_verify_password(self):
         # ADICIONAR LÓGICA DE PASSWORD MAIOR QUE 8 LETRAS, TER NÚMEROS E LETRAS
         if len(str(self.validation_password)) < 8:
             print("Senha curta demais")
@@ -43,7 +41,11 @@ class Validation:
     # LOGIN CONTA LÓGICA
 
     
-    def verify_login(self):
+    def verify_login(self, username, password):
+        self.validation_user = username
+        self.validation_password = password
+
+
         if self.validation_user in self.data.data_username:
             print("Usuário encontrado, verificando senha...")
             index_user = self.data.data_username.index(self.validation_user)
