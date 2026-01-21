@@ -7,7 +7,7 @@ class Validation:
         # CRIANDO OS SELFS PARA RECEBER O USER E PASSWORD DOS INPUTS
         self.conn = sqlite3.connect("bank/database.db")
         self.cursor = self.conn.cursor()
-
+        
 
 
     # CRIAR CONTA LÓGICA
@@ -32,7 +32,8 @@ class Validation:
 
         if self.cursor.fetchone() is None:
             print("Usuário ou senha incorretos")
-            return False
+            
 
         print("Login realizado com sucesso")
-        return True
+        
+        
