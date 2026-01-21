@@ -1,28 +1,55 @@
-# Arquivo responsável por autenticação:
-# - criar conta
-# - login
-# - validação de usuário
-
-usuarios = {}
+from bank.validation import Validation
+from bank.services import Services
 
 while True:
     print("""
-Bem vindo ao nosso banco! Oque o senhor deseja fazer?
-\n1 - Criar conta""")
-    print("2 - Login")
-    print("3 - Sair")
+1 - Criar conta
+2 - Login
+3 - Sair
+""")
 
-    opcao = input("Escolha: ")
+    op = input("Escolha: ")
 
-    if opcao == "1":
-        pass
+    if op == "1":
+        user = input("Usuário: ")
+        password = input("Senha: ")
 
-    elif opcao == "2":
-        pass
+        v = Validation(user, password)
+        v.create_account()
 
-    elif opcao == "3":
-        print("Saindo...")
+    elif op == "2":
+        user = input("Usuário: ")
+        password = input("Senha: ")
+
+        v = Validation(user, password)
+        index = v.login()
+
+        if index is not None:
+            s = Services(index)
+
+            while True:
+                print("""
+1 - Depositar
+2 - Sacar
+3 - Ver saldo
+4 - Ver histórico
+5 - Sair
+""")
+
+                choice = input("Escolha: ")
+
+                if choice == "1":
+                    s.deposit(float(input("Valor: ")))
+                elif choice == "2":
+                    s.withdraw(float(input("Valor: ")))
+                elif choice == "3":
+                    s.balance()
+                elif choice == "4":
+                    s.history()
+                elif choice == "5":
+                    break
+                else:
+                    print("Opção inválida.")
+
+    elif op == "3":
         break
-
-    else:
-        print("Opção inválida.")

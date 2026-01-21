@@ -1,60 +1,48 @@
-from data import Data
+from bank.data import Data
+
+from bank.data import Data
 
 class Validation:
+    data = Data()  # compartilhado entre todos
+
     def __init__(self, username, password):
-        
-        # CRIANDO OS SELFS PARA RECEBER O USER E PASSWORD DOS INPUTS
         self.validation_user = username
         self.validation_password = password
 
-        # INSTANCIANDO A CLASSE PARA UTILIZAR ELA NAS VERIFICAÇÕES
-        self.data = Data()
-
-    def test(self):
-        print(f"valores recebidos: {self.validation_password, self.validation_user}")
-
-    # CRIAR CONTA LÓGICA
-
-    def create_account_verify_user(self):
-
-        # COMPARA SE JA EXISTE UM USUÁRIO E SE EXISTE, NEGA ACESSO
+    def create_account(self):
         if self.validation_user in self.data.data_username:
-            print("Impossível criar um usuário com esse nome, pois já é existente!")
-        else:
-            # VERIFICA SE O USER É MAIOR QUE 4 CARACTERES
-            if len(self.validation_user) < 4:
-                print("Username pequeno demais, tente novamente!")
-            else:
-                self.create_account_verify_password(self.validation_user)
+            print("Usuário já existe.")
+            return False
 
-    def create_account_verify_password(self, user_validation):
-        # ADICIONAR LÓGICA DE PASSWORD MAIOR QUE 8 LETRAS, TER NÚMEROS E LETRAS
-        if len(str(self.validation_password)) < 8:
-            print("Senha curta demais")
-        else:
-            self.data.data_username.append(self.validation_user)
-            self.data.data_password.append(self.validation_password)
-            print("Conta criada com sucesso!")
+        if len(self.validation_user) < 4:
+            print("Usuário pequeno demais.")
+            return False
 
+        if len(self.validation_password) < 8:
+            print("Senha curta demais.")
+            return False
 
+        self.data.data_username.append(self.validation_user)
+        self.data.data_password.append(self.validation_password)
+        self.data.data_balance.append(0)
+        self.data.data_history.append([])
 
+        print("Conta criada com sucesso.")
+        return True
 
+    def login(self):
+        if self.validation_user not in self.data.data_username:
+            print("Usuário não encontrado.")
+            return None
 
-    # LOGIN CONTA LÓGICA
+        index = self.data.data_username.index(self.validation_user)
 
-    
-    def verify_login(self):
-        if self.validation_user in self.data.data_username:
-            print("Usuário encontrado, verificando senha...")
-            index_user = self.data.data_username.index(self.validation_user)
-            if self.validation_password == self.data.data_password[index_user]:
-                print("Login Autenticado!") # REDIRECIONAR PARA A A INTERFACE
-            else:
-                print("Senha incorreta! Tente novamente")
+        if self.validation_password != self.data.data_password[index]:
+            print("Senha incorreta.")
+            return None
 
-        else:
-            print("Usuário não encontrado")
-
+        print("Login realizado.")
+        return index
 
 # teste = Validation('tevoo', 123)
 #teste.create_account_verify_user()
